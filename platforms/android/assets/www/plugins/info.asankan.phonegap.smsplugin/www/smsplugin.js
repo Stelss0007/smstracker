@@ -1,4 +1,4 @@
-cordova.define("info.asankan.phonegap.smsplugin.smsplugin", function(require, exports, module) { var argscheck = require('cordova/argscheck'),
+cordova.define("info.asankan.phonegap.smsplugin.smsplugin", function(require, exports, module) {var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec');
 
 var smsplugin = {
@@ -20,5 +20,4 @@ stopReception:function(successCallback,failureCallback) {
 };
 
 module.exports=smsplugin;
-
 });

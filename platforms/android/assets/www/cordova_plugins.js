@@ -7,12 +7,5 @@ module.exports = [
             "smsplugin"
         ]
     }
-];
-module.exports.metadata = 
-// TOP OF METADATA
-{
-    "info.asankan.phonegap.smsplugin": "0.2.0",
-    "org.apache.cordova.geolocation": "0.3.10"
-}
-// BOTTOM OF METADATA
+]
 });

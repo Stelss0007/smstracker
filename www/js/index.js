@@ -51,11 +51,6 @@ var app = {
             smsplugin.send($('#telephone').val(), $('#smsMessage').val(), '', function(result) {alert('ok');},function(error){alert('error');});
             alert('end');
         });
-        
-        
-        navigator.geolocation.getCurrentPosition (geolocationSuccess);
-        
-                
 
     },
     
@@ -99,15 +94,52 @@ $('#stopGetSMS').on( "click", function(){
     alert('stop get sms');
 });
 
-var map = L.map('map').setView([51.505, -0.09], 13);
-
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18
-}).addTo(map);
 
 
-var geolocationSuccess = function(position) 
-{
-  alert (' Широта: ' + position.coords.latitude + "\n" + ' Долгота: ' + position.coords.longitude + "\n" + ' Высота: ' + position.coords.altitude + "\n" + ' точность: ' + position.coords.accuracy + "\n" + ' высоте точность: ' + position.coords.altitudeAccuracy + "\n" + ' заголовок: ' + position.coords.heading + "\n" + ' скорость: ' + position.coords.speed + "\n" + ' штампа времени: ' + position.timestamp + "\n");
+var markers = {};
+
+navigator.geolocation.getCurrentPosition (geolocationSuccess);
+
+var map = L.map('map');
+
+function geolocationSuccess(position) {
+    alert (' Широта: ' + position.coords.latitude + "\n" + ' Долгота: ' + position.coords.longitude + "\n" + ' Высота: ' + position.coords.altitude + "\n" + ' точность: ' + position.coords.accuracy + "\n" + ' высоте точность: ' + position.coords.altitudeAccuracy + "\n" + ' заголовок: ' + position.coords.heading + "\n" + ' скорость: ' + position.coords.speed + "\n" + ' штампа времени: ' + position.timestamp + "\n");
+
+    map.setView([position.coords.latitude, position.coords.longitude], 13);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18
+      }).addTo(map);
+
+    //set marker
+    var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+
+    //set  sircle radius
+    //position.coords.accuracy - точность
+    var circle = L.circle([position.coords.latitude, position.coords.longitude], position.coords.accuracy, {
+        color: 'green',
+        fillColor: '#00ff00',
+        fillOpacity: 0.3
+    }).addTo(map);
+
+    //Сообщение для маркера
+    marker.bindPopup("<b>Вы</b><br>Ваше место нахождения.").openPopup();
+    
+    
+    setObjectPosition(49.4370, 32.0258, 'Rus');
 };
+
+
+
+function setObjectPosition(lat, lng, name) 
+{
+    alert(markers[name]);
+    if(markers[name] === undefined) {
+        alert('new marker');
+        markers[name] = L.marker([lat, lng]).addTo(map);
+        markers[name].bindPopup("<b>Object1 ["+name+"]</b><br>Место нахождения.").openPopup();
+    } else {
+        markers[name].setLatLng([lat, lng]).update();
+    }
+}
