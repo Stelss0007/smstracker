@@ -41,10 +41,10 @@
     },
     "installed_plugins": {
         "info.asankan.phonegap.smsplugin": {
-            "PACKAGE_NAME": "com.example.smstracker"
+            "PACKAGE_NAME": "com.stelssoft.sms"
         },
         "org.apache.cordova.geolocation": {
-            "PACKAGE_NAME": "com.example.smstracker"
+            "PACKAGE_NAME": "com.stelssoft.sms"
         }
     },
     "dependent_plugins": {}
