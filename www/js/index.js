@@ -99,15 +99,27 @@ $('#stopGetSMS').on( "click", function(){
     alert('stop get sms');
 });
 
-var map = L.map('map').setView([51.505, -0.09], 13);
-
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18
-}).addTo(map);
+var map = L.map('map');//.setView([51.505, -0.09], 13);
+navigator.geolocation.getCurrentPosition (geolocationSuccess);
 
 
-var geolocationSuccess = function(position) 
+function geolocationSuccess(position) 
 {
   alert (' Широта: ' + position.coords.latitude + "\n" + ' Долгота: ' + position.coords.longitude + "\n" + ' Высота: ' + position.coords.altitude + "\n" + ' точность: ' + position.coords.accuracy + "\n" + ' высоте точность: ' + position.coords.altitudeAccuracy + "\n" + ' заголовок: ' + position.coords.heading + "\n" + ' скорость: ' + position.coords.speed + "\n" + ' штампа времени: ' + position.timestamp + "\n");
+  map.setView([position.coords.latitude, position.coords.longitude], 13);
+  
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18
+  }).addTo(map);
+
+  var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+  marker.bindPopup("<b>Ruslan Location!</b><br>Я здесь.").openPopup();
+  
+  var circle = L.circle([position.coords.latitude, position.coords.longitude], 100, {
+        color: 'green',
+        fillColor: '#00ff00',
+        fillOpacity: 0.3
+    }).addTo(map);
+  
 };
