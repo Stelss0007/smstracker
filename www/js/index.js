@@ -107,6 +107,17 @@ navigator.geolocation.getCurrentPosition (
 
 var map = L.map('map');
 
+//Layers 
+var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+var localLayer = new L.TileLayer('file:///sdcard/tiles/{z}/{x}/{y}.jpg');
+var yandexLayer = new L.Yandex();
+var googleLayer = new L.Google('ROADMAP');
+//Add control Layers
+map.addControl(new L.Control.Layers({'OSM':osmLayer, "Yandex":yandexLayer, "Google":googleLayer, "Local Map": localLayer}));
+
+
+
+
 function geolocationSuccess(position) {
 	myLocation['lat'] = position.coords.latitude;
 	myLocation['lng'] = position.coords.longitude;
@@ -121,6 +132,8 @@ function geolocationSuccess(position) {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 13
       }).addTo(map);
+    map.addControl( new L.Control.Compass() );//inizialize control
+    
 
     //set marker
     var marker = L.marker([myLocation['lat'], myLocation['lng']]).addTo(map);

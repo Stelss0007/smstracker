@@ -23,6 +23,7 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/leaflet.css" rel="stylesheet">
+        <link href="css/leaflet-compass.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
@@ -37,13 +38,21 @@
             <button id ="sendSMS" class="btn btn-primary">Send SMS</button>
             <button id ="getSMS" class="btn btn-primary">Start Get SMS</button>
             <button id ="stopGetSMS" class="btn btn-primary">Stop Get SMS</button>
+            <a href="geo:38.897096,-77.036545" class="btn btn-primary">Open Location</a>
         </div> <!-- /container -->
 
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jQuery.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        
         <script type="text/javascript" src="js/leaflet.js"></script>
+        <script type="text/javascript" src="js/api-google.js"></script>
+        <script type="text/javascript" src="js/api-yandex.js"></script>
+        <script type="text/javascript" src="js/layer/Yandex.js"></script>
+        <script type="text/javascript" src="js/layer/Google.js"></script>
+        
+        <script type="text/javascript" src="js/leaflet-compass.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
