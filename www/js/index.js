@@ -41,7 +41,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        alert('ready');
         app.receivedEvent('deviceready');
         smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
         
@@ -74,6 +73,7 @@ var app = {
 };
 
 
+getMyPosition();
 
 
 
@@ -99,11 +99,7 @@ $('#stopGetSMS').on( "click", function(){
 
 var markers = {};
 
-navigator.geolocation.getCurrentPosition (
-                                          geolocationSuccess,
-                                          function(){alert('Error Get My Location')},
-                                          { maximumAge: 50000, timeout: 5000 }
-                                         );
+
 
 var map = L.map('map');
 
@@ -111,11 +107,25 @@ var map = L.map('map');
 var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 var localLayer = new L.TileLayer('file:///sdcard/tiles/{z}/{x}/{y}.jpg');
 var yandexLayer = new L.Yandex();
-var googleLayer = new L.Google('ROADMAP');
+//var googleLayer = new L.Google('ROADMAP');
+
 //Add control Layers
-map.addControl(new L.Control.Layers({'OSM':osmLayer, "Yandex":yandexLayer, "Google":googleLayer, "Local Map": localLayer}));
+map.addControl(new L.Control.Layers({
+  'OSM':osmLayer,
+  "Yandex":yandexLayer,
+  //"Google":googleLayer,
+  "Local Map": localLayer
+}));
 
 
+function getMyPosition() {
+//  navigator.geolocation.getCurrentPosition (
+  navigator.geolocation.watchPosition (
+                                          geolocationSuccess,
+                                          function(){alert('Error Get My Location')},
+                                          { maximumAge: 50000, timeout: 45000 }
+                                         );
+}
 
 
 function geolocationSuccess(position) {
@@ -123,16 +133,25 @@ function geolocationSuccess(position) {
 	myLocation['lng'] = position.coords.longitude;
 	myLocation['accuracy'] = position.coords.accuracy;
 
-    alert (' Широта: ' + position.coords.latitude + "\n" + ' Долгота: ' + position.coords.longitude + "\n" + ' Высота: ' + position.coords.altitude + "\n" + ' точность: ' + position.coords.accuracy + "\n" + ' высоте точность: ' + position.coords.altitudeAccuracy + "\n" + ' заголовок: ' + position.coords.heading + "\n" + ' скорость: ' + position.coords.speed + "\n" + ' штампа времени: ' + position.timestamp + "\n");
-
+    //alert (' Широта: ' + position.coords.latitude + "\n" + ' Долгота: ' + position.coords.longitude + "\n" + ' Высота: ' + position.coords.altitude + "\n" + ' точность: ' + position.coords.accuracy + "\n" + ' высоте точность: ' + position.coords.altitudeAccuracy + "\n" + ' заголовок: ' + position.coords.heading + "\n" + ' скорость: ' + position.coords.speed + "\n" + ' штампа времени: ' + position.timestamp + "\n");
+    var element = document.getElementById('window-my-position-info');
+        element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+                            'Longitude: ' + position.coords.longitude     + '<br />' +
+                            'Точность: ' + position.coords.accuracy     + '<br />' +
+                            'Скорость: ' + position.coords.speed + "<br>" + 
+                            'Iтампа времени: ' + position.timestamp + "<br>"
+                            '<hr />';
+                    
+                    
+    
     map.setView([position.coords.latitude, position.coords.longitude], 13);
 
 //    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     L.tileLayer('file:///sdcard/tiles/{z}/{x}/{y}.jpg', {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      attribution: 'Smart GPS, Imagery © <a href="http://stelssoft.com">StelsSoft</a>',
       maxZoom: 13
       }).addTo(map);
-    map.addControl( new L.Control.Compass() );//inizialize control
+    //map.addControl( new L.Control.Compass() );//inizialize control
     
 
     //set marker
@@ -215,16 +234,15 @@ function splitLatLng(str) {
 ///////////// Отображение или пермещение маркера /////////////////////////
 function setObjectPosition(lat, lng, name) 
 {
-    alert('obj start');
+
     var distance = distanceKM(myLocation['lat'], myLocation['lng'], lat, lng);
-    alert(distance);
+    //alert(distance);
     if(markers[name] === undefined || markers[name] === null) {
-        alert('new marker');
         markers[name] = L.marker([lat, lng]).addTo(map);
         markers[name].bindPopup("<b>Object1 ["+name+"]</b><br>Растояние:"+distance+"KM").openPopup();
     } else {
         markers[name].setLatLng([lat, lng]).update();
     }
-    alert('obj end');
+
 }
 
