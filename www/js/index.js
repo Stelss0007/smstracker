@@ -151,8 +151,9 @@ function geolocationSuccess(position) {
                             '<hr />';
                     
                     
-    
-    map.setView([position.coords.latitude, position.coords.longitude], 13);
+    if(myMarker === null) {
+      map.setView([position.coords.latitude, position.coords.longitude], 13);
+    }
 
 //    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     L.tileLayer('file:///sdcard/tiles/{z}/{x}/{y}.jpg', {
