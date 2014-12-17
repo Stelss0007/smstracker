@@ -131,7 +131,7 @@ function getMyPosition() {
   navigator.geolocation.watchPosition (
                                           geolocationSuccess,
                                           function(){alert('Error Get My Location')},
-                                          { maximumAge: 50000, timeout: 45000 }
+                                          { maximumAge: 50000, timeout: 25000 }
                                          );
 }
 
