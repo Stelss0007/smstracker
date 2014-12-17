@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
     <link href="css/leaflet.css" rel="stylesheet">
     <link href="css/leaflet-compass.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="css/index.css" />
-<!--    <link rel="stylesheet" href="css/theme-classic.css" />-->
   </head>
   <body class="ui-mobile-viewport ui-overlay-b ui-body-a" data-theme="a">
+
+    <!-- MAIN PAGE-->
     <div data-role="page" class="jqm-demos ui-responsive-panel ui-page-theme-a" id="panel-fixed-page1" data-url="panel-fixed-page1" data-theme="a">
       <div data-role="header" data-position="fixed" data-theme="a">
         <h1>Page Title</h1>
@@ -36,7 +37,7 @@
         </div>  
       </div>  
 
-    
+
       <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="nav-panel">
         <ul data-role="listview"  class="nav-search">
           <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
@@ -51,47 +52,49 @@
       </div><!-- /panel -->
       <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="add-form">
         <form class="userform">
-            <h2>Create new user</h2>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="status" value="" data-clear-btn="true" data-mini="true">
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="" data-clear-btn="true" autocomplete="off" data-mini="true">
-            <div class="switch">
-                <label for="status">Status</label>
-                <select name="status" id="slider" data-role="slider" data-mini="true">
-                    <option value="off">Inactive</option>
-                    <option value="on">Active</option>
-                </select>
-            </div>
-            <div class="ui-grid-a">
-                <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
-                <div class="ui-block-b"><a href="#" data-rel="close" data-role="button" data-theme="b" data-mini="true">Save</a></div>
-            </div>
+          <h2>Create new user</h2>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="status" value="" data-clear-btn="true" data-mini="true">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" value="" data-clear-btn="true" autocomplete="off" data-mini="true">
+          <div class="switch">
+            <label for="status">Status</label>
+            <select name="status" id="slider" data-role="slider" data-mini="true">
+              <option value="off">Inactive</option>
+              <option value="on">Active</option>
+            </select>
+          </div>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c" data-mini="true">Cancel</a></div>
+            <div class="ui-block-b"><a href="#" data-rel="close" data-role="button" data-theme="b" data-mini="true">Save</a></div>
+          </div>
         </form>
-    </div><!-- /panel -->
+      </div><!-- /panel -->
     </div><!-- /page -->
-    
+    <!-- MAIN PAGE END-->
+
+    <!-- INFO PAGE -->
     <div data-role="page" class="jqm-demos ui-responsive-panel" id="window-my-position-info" data-url="window-my-position-info" data-theme="a">
       hello
     </div>
-    
+    <!-- INFO PAGE END-->
 
-    
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jQuery.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/leaflet.js"></script>
-<!--    <script type="text/javascript" src="js/api-google.js"></script>-->
+    <!--    <script type="text/javascript" src="js/api-google.js"></script>-->
     <script type="text/javascript" src="js/api-yandex.js"></script>
     <script type="text/javascript" src="js/layer/Yandex.js"></script>
-<!--    <script type="text/javascript" src="js/layer/Google.js"></script>-->
+    <!--    <script type="text/javascript" src="js/layer/Google.js"></script>-->
 
-<!--    <script type="text/javascript" src="js/leaflet-compass.js"></script>-->
+    <!--    <script type="text/javascript" src="js/leaflet-compass.js"></script>-->
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-        app.initialize();
+      app.initialize();
     </script>
   </body>
 </html>
