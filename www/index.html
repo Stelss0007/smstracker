@@ -6,19 +6,16 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 
-    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
     <link href="css/leaflet.css" rel="stylesheet">
     <link href="css/leaflet-compass.css" rel="stylesheet">
     
     <link rel="stylesheet" href="css/index.css" />
 <!--    <link rel="stylesheet" href="css/theme-classic.css" />-->
   </head>
-  <body class="ui-mobile-viewport ui-overlay-b" data-theme="b">
-
-    
-    
-    <div data-role="page" class="jqm-demos ui-responsive-panel" id="panel-fixed-page1" data-url="panel-fixed-page1" data-theme="b">
-      <div data-role="header" data-position="fixed" data-theme="b">
+  <body class="ui-mobile-viewport ui-overlay-b ui-body-a" data-theme="a">
+    <div data-role="page" class="jqm-demos ui-responsive-panel ui-page-theme-a" id="panel-fixed-page1" data-url="panel-fixed-page1" data-theme="a">
+      <div data-role="header" data-position="fixed" data-theme="a">
         <h1>Page Title</h1>
         <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
         <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
@@ -28,17 +25,19 @@
         <div id="map"></div>
       </div><!-- /content -->
 
-      <div data-role="footer" data-position="fixed" data-theme="b">
-        <div data-role="navbar" class="nav-glyphish-example ui-navbar ui-mini" data-grid="b" role="navigation">
-          <ul class="ui-grid">
-            <li class="ui-block-b"><a href="#" id="chat" data-icon="custom" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="b" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Chat</span><span class="ui-icon ui-icon-custom ui-icon-shadow">&nbsp;</span></span></a></li>
-            <li class="ui-block-b"><a href="#" id="email" data-icon="custom" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="b" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Email</span><span class="ui-icon ui-icon-custom ui-icon-shadow">&nbsp;</span></span></a></li>
-            <li class="ui-block-b"><a href="#" id="skull" data-icon="custom" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="b" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Danger</span><span class="ui-icon ui-icon-custom ui-icon-shadow">&nbsp;</span></span></a></li>
+      <div class="footer" data-role="footer" data-position="fixed" data-theme="a">
+        <div data-role="navbar">
+          <ul>
+            <li><a href="#window-my-position-info" data-prefetch="true" data-transition="none">Info</a></li>
+            <li><a href="footer-persist-b.html" data-prefetch="true" data-transition="none">Friends</a></li>
+            <li><a href="footer-persist-c.html" data-prefetch="true" data-transition="none">Albums</a></li>
+            <li><a href="footer-persist-d.html" data-prefetch="true" data-transition="none" class="ui-btn-active ui-state-persist">Emails</a></li>
           </ul>
-        </div>
-      </div><!-- /footer -->
+        </div>  
+      </div>  
 
-      <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b" id="nav-panel">
+    
+      <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="nav-panel">
         <ul data-role="listview"  class="nav-search">
           <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
           <li><a href="#panel-fixed-page1">Accessibility</a></li>
@@ -50,7 +49,7 @@
           <li><a href="#panel-fixed-page7">Accordions</a></li>
         </ul>
       </div><!-- /panel -->
-      <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="b" id="add-form">
+      <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="add-form">
         <form class="userform">
             <h2>Create new user</h2>
             <label for="name">Name</label>
@@ -74,14 +73,15 @@
     </div><!-- /panel -->
     </div><!-- /page -->
     
-    <div data-role="page" class="jqm-demos ui-responsive-panel" id="window-my-position-info" data-url="window-my-position-info" data-theme="b">
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="window-my-position-info" data-url="window-my-position-info" data-theme="a">
       hello
     </div>
     
+
     
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jQuery.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/leaflet.js"></script>
 <!--    <script type="text/javascript" src="js/api-google.js"></script>-->
     <script type="text/javascript" src="js/api-yandex.js"></script>

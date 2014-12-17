@@ -19,6 +19,9 @@
 //var smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
 var smsplugin = null;
 var myLocation = {};
+var myMarker = null;
+var myCircle  = null;
+
 
 var app = {
     // Application Constructor
@@ -43,7 +46,7 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
-        
+
         smsplugin.isSupported(function(result){alert('isSuported => ');}, function(error){alert('Suported Error ');});
         smsplugin.startReception(function(result){alert('sms=>' + result);}, function(error){alert('error '+ error);});
         
@@ -74,8 +77,6 @@ var app = {
 
 
 getMyPosition();
-
-
 
 $('#sendSMS').on( "click", function(){
     alert('start send sms');
@@ -109,13 +110,20 @@ var localLayer = new L.TileLayer('file:///sdcard/tiles/{z}/{x}/{y}.jpg');
 var yandexLayer = new L.Yandex();
 //var googleLayer = new L.Google('ROADMAP');
 
+var imageUrl = 'file:///sdcard/maps/rus/testmap.jpg',
+    //SouthWest, NorthEast
+    imageBounds = [[49.3539292526216, 31.9846343994141], [49.4659380497503, 32.1473693847656]],
+    kml = new L.imageOverlay(imageUrl, imageBounds);
+
 //Add control Layers
 map.addControl(new L.Control.Layers({
   'OSM':osmLayer,
   "Yandex":yandexLayer,
   //"Google":googleLayer,
-  "Local Map": localLayer
-}));
+  "Local Map": localLayer,
+  "KML": kml
+}
+));
 
 
 function getMyPosition() {
@@ -155,15 +163,23 @@ function geolocationSuccess(position) {
     
 
     //set marker
-    var marker = L.marker([myLocation['lat'], myLocation['lng']]).addTo(map);
+    if(myMarker === null) {
+      myMarker = L.marker([myLocation['lat'], myLocation['lng']]).addTo(map);
+    } else {
+      myMarker.setLatLng([myLocation['lat'], myLocation['lng']]).update();
+    }
 
     //set  sircle radius
     //position.coords.accuracy - точность
-    var circle = L.circle([myLocation['lat'], myLocation['lng']], position.coords.accuracy, {
-        color: 'green',
-        fillColor: '#00ff00',
-        fillOpacity: 0.3
-    }).addTo(map);
+    if(myCircle === null) {
+      myCircle = L.circle([myLocation['lat'], myLocation['lng']], position.coords.accuracy, {
+          color: 'green',
+          fillColor: '#00ff00',
+          fillOpacity: 0.3
+      }).addTo(map);
+    } else {
+      myCircle.setLatLng([myLocation['lat'], myLocation['lng']]).setRadius(position.coords.accuracy).update();
+    }
 
 
     var now = new Date();
@@ -234,7 +250,6 @@ function splitLatLng(str) {
 ///////////// Отображение или пермещение маркера /////////////////////////
 function setObjectPosition(lat, lng, name) 
 {
-
     var distance = distanceKM(myLocation['lat'], myLocation['lng'], lat, lng);
     //alert(distance);
     if(markers[name] === undefined || markers[name] === null) {

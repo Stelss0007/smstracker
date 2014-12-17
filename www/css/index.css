@@ -5,55 +5,26 @@
   max-height: 100%;
 }
 
-.nav-search .ui-btn-up-a {
-      background-image:none;
-      background-color:#333333;
-}
-.nav-search .ui-btn-inner {
-      border-top: 1px solid #888;
-      border-color: rgba(255, 255, 255, .1);
-}
-.nav-search .ui-btn.ui-first-child {
-      border-top-width: 0;
-      background: #111;
-}
-.userform {
-      padding: .8em 1.2em;
-}
-.userform h2 {
-      color: #555;
-      margin: 0.3em 0 .8em 0;
-      padding-bottom: .5em;
-      border-bottom: 1px solid rgba(0,0,0,.1);
-}
-.userform label {
-      display: block;
-      margin-top: 1.2em;
-}
-.switch .ui-slider-switch {
-      width: 6.5em !important;
-}
-.ui-grid-a {
-      margin-top: 1em;
-      padding-top: .8em;
-      margin-top: 1.4em;
-      border-top: 1px solid rgba(0,0,0,.1);
-}
 
-.ui-btn {
+/*.ui-btn {
   padding: 7px 10px;
 }
 
 .ui-btn-icon-right {
   
+}*/
+
+.ui-page {
+  padding-top: 0px !important;
 }
 
 .ui-content { 
   position: absolute;
-  top: 25px;
+  top: 45px;
   right: 0;
-  bottom: 30px;
+  bottom: 0px;
   left: 0;
+  padding: 0;
 }
 
 .leaflet-popup-content {
@@ -64,15 +35,19 @@
 .ui-mobile label, 
 div.ui-controlgroup-label {
   font-size: 12px;
-  padding-left: 10px;
+  /* padding-left: 10px; */
 }
 
 .ui-mobile label span,
 div.ui-controlgroup-label span{
-  display: block;
-  margin-left: 25px;
+  display: inline;
+  margin-left: 5px;
 }
 
 .ui-checkbox, .ui-radio {
   margin: 1px 0;
+}
+
+.ui-btn-corner-all {
+  border-radius: 6px; 
 }
