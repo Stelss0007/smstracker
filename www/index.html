@@ -29,9 +29,9 @@
       <div class="footer" data-role="footer" data-position="fixed" data-theme="a">
         <div data-role="navbar">
           <ul>
-            <li><a href="#window-my-position-info" data-prefetch="true" data-transition="none">Info</a></li>
+            <li><a href="#window-my-position-info" data-prefetch="true" data-transition="none">Информация</a></li>
             <li><a href="footer-persist-b.html" data-prefetch="true" data-transition="none">Friends</a></li>
-            <li><a href="footer-persist-c.html" data-prefetch="true" data-transition="none">Albums</a></li>
+            <li><a href="#" onclick="getMyPositionNow();return false;" data-prefetch="true" data-transition="none">Моя локация</a></li>
             <li><a href="footer-persist-d.html" data-prefetch="true" data-transition="none" class="ui-btn-active ui-state-persist">Emails</a></li>
           </ul>
         </div>  
@@ -75,9 +75,40 @@
     </div><!-- /page -->
     <!-- MAIN PAGE END-->
 
+    
+    
+    
+    
     <!-- INFO PAGE -->
-    <div data-role="page" class="jqm-demos ui-responsive-panel" id="window-my-position-info" data-url="window-my-position-info" data-theme="a">
-      hello
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="window-my-position-info" data-add-back-btn="true" data-back-btn-text="Back" data-url="window-my-position-info" data-theme="a">
+      <div data-role="header">
+        <h1>Page Title</h1>
+        <a data-role="button" data-rel="back" data-icon="arrow-l" data-theme="app-ios">Назад</a>
+      </div>
+      <div data-role="content">
+        <table border="0" width="100%">
+          <tr>
+            <td>Latitude:</td>
+            <td><span id="info-latinude"></span></td>
+          </tr>
+          <tr>
+            <td>Longitude:</td>
+            <td><span id="info-longtinude"></span></td>
+          </tr>
+          <tr>
+            <td>Точность:</td>
+            <td><span id="info-accuracy"></span></td>
+          </tr>
+          <tr>
+            <td>Штамп времени:</td>
+            <td><span id="info-timestamp"></span></td>
+          </tr>
+          <tr>
+            <td>Скорость:</td>
+            <td><span id="info-speed"></span></td>
+          </tr>
+        </table>
+      </div>
     </div>
     <!-- INFO PAGE END-->
 
