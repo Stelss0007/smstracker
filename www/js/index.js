@@ -25,6 +25,7 @@ var markers = {};
 var mapViewIsSet = false;
 var watchPiditionID = null;
 
+
 var map = L.map('map');
 //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 L.tileLayer('file:///sdcard/tiles/{z}/{x}/{y}.jpg', {
@@ -43,13 +44,18 @@ var imageUrl = 'file:///sdcard/maps/rus/testmap.jpg',
         imageBounds = [[49.3539292526216, 31.9846343994141], [49.4659380497503, 32.1473693847656]],
         kml = new L.imageOverlay(imageUrl, imageBounds);
 
+//var newKML = new L.KML('maps/testmap/testmap.kml');
+var newKML2 = new L.KML('file:///sdcard/maps/testmap/testmap.kml');
+
 //Add control Layers
 map.addControl(new L.Control.Layers({
   'OSM': osmLayer,
   "Yandex": yandexLayer,
   //"Google":googleLayer,
   "Local Map": localLayer,
-  "KML": kml
+  "KML": kml,
+  //"newKML" : newKML,
+  "newKML2" : newKML2
 }
 ));
 
@@ -111,6 +117,11 @@ var app = {
 
 
 getMyPosition();
+
+
+function dirname(path) {
+    return path.replace(/\\/g,'/').replace(/\/[^\/]*$/, '');;
+}
 
 $('#sendSMS').on("click", function() {
   alert('start send sms');
@@ -281,4 +292,6 @@ function setObjectPosition(lat, lng, name)
   }
 
 }
+
+
 
